@@ -12,6 +12,7 @@ public class Map {
     public int height;
     ArrayList<Enemie> enemies;
     Case[][] cases;
+    Tresor tresor;
 
 
 
@@ -21,6 +22,7 @@ public class Map {
            this.width = bufferedImage.getWidth();
            enemies = new ArrayList<>();
            cases = new Case[width][height];
+           tresor = new Tresor(0,0);
            int[] pixels = new int[width*height];
            bufferedImage.getRGB(0,0, width, height, pixels, 0, width);
 
@@ -38,8 +40,13 @@ public class Map {
 
                        else if(pixel_color == 0xFFFF6A00){
                            enemies.add(new Enemie(i*16,j*16));
-                       }
+                        //  System.out.println("done");
 
+                      }
+                      else if(pixel_color == 0xFF00FF00){
+                          tresor=new Tresor(i*16,j*16);
+                          System.out.println("done");
+                      }
                    }
            }
 
@@ -56,12 +63,15 @@ public class Map {
         }
 
 
+        tresor.render(graphics,new Color(255,215,0));
 
 
-        enemies.get(0).render(graphics, new Color(255,0,58));
-        enemies.get(1).render(graphics, new Color(152,255,2));
-        enemies.get(2).render(graphics, new Color(255,0,242));
-        enemies.get(3).render(graphics, new Color(0,253,242));
+       for (int i=0;i<enemies.size();i++){
+           enemies.get(i).render(graphics, new Color(255,0,58));
+       }
+
+
+
     }
 
 }

@@ -50,11 +50,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/res/plan" />
+      <recent name="$PROJECT_DIR$/res/plan" />
       <recent name="C:\Users\bchai\IdeaProjects\PacMan\src" />
     </key>
   </component>
@@ -124,7 +132,7 @@
       <workItem from="1589050764040" duration="442000" />
       <workItem from="1589377470762" duration="1475000" />
       <workItem from="1589797918623" duration="21648000" />
-      <workItem from="1607952709907" duration="694000" />
+      <workItem from="1607952709907" duration="3399000" />
     </task>
     <task id="LOCAL-00001" summary="Erreur corrigée">
       <created>1588298928994</created>
@@ -228,22 +236,22 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="729" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607952886261" />
-    <state width="1802" height="275" key="GridCell.Tab.0.bottom" timestamp="1607953359937">
+    <state width="1802" height="275" key="GridCell.Tab.0.bottom" timestamp="1607956061625">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1802" height="275" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607953359937" />
-    <state width="1802" height="275" key="GridCell.Tab.0.center" timestamp="1607953359936">
+    <state width="1802" height="275" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607956061625" />
+    <state width="1802" height="275" key="GridCell.Tab.0.center" timestamp="1607956061624">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1802" height="275" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607953359936" />
-    <state width="1802" height="275" key="GridCell.Tab.0.left" timestamp="1607953359936">
+    <state width="1802" height="275" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607956061624" />
+    <state width="1802" height="275" key="GridCell.Tab.0.left" timestamp="1607956061624">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1802" height="275" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607953359936" />
-    <state width="1802" height="275" key="GridCell.Tab.0.right" timestamp="1607953359937">
+    <state width="1802" height="275" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607956061624" />
+    <state width="1802" height="275" key="GridCell.Tab.0.right" timestamp="1607956061624">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1802" height="275" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607953359937" />
+    <state width="1802" height="275" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607956061624" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PacMan$Main.ic" NAME="Main Coverage Results" MODIFIED="1589803628868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

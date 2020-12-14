@@ -23,6 +23,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 
     static final String TITRE ="Pac-Man";
     public static Espion espion;
+    public static Tresor tresor;
     static Map map;
 
     public Fenetre() throws IOException {
