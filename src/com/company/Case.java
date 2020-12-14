@@ -3,9 +3,10 @@ package com.company;
 import java.awt.*;
 
 public class Case extends Rectangle {
-
-    public Case(int case_x,int case_y){
+    public boolean estMur;
+    public Case(int case_x,int case_y, boolean estMur){
         setBounds(case_x,case_y,16,16);
+        this.estMur = estMur;
     }
 
 

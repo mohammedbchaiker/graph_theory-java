@@ -25,7 +25,7 @@ public class Map {
            tresor = new Tresor(0,0);
            int[] pixels = new int[width*height];
            bufferedImage.getRGB(0,0, width, height, pixels, 0, width);
-
+        int cont =0;
            for(int i =0;i<width;i++){
                for(int j=0;j<height;j++){
                    int pixel_color = pixels[i+j*width];
@@ -35,17 +35,23 @@ public class Map {
                        }
 
                        else if(pixel_color == 0xFF000000){
-                           cases[i][j] = new Case(i * 16, j * 16);
+                           cases[i][j] = new Case(i * 16, j * 16,true);
                        }
 
                        else if(pixel_color == 0xFFFF6A00){
                            enemies.add(new Enemie(i*16,j*16));
-                        //  System.out.println("done");
+
 
                       }
                       else if(pixel_color == 0xFF00FF00){
                           tresor=new Tresor(i*16,j*16);
                           System.out.println("done");
+                      }
+
+                      else if(pixel_color == 0xFFFFFFFF) {
+
+                          cases[i][j] = new Case(i*16,j*16,false);
+                          System.out.println(cont+++" : "+cases[i][j]);
                       }
                    }
            }
@@ -56,11 +62,21 @@ public class Map {
     public void render(Graphics graphics){
         for( int i = 0; i < width ; i++){
             for(int j =0; j<height;j++){
-                if(cases[i][j] != null){
+                if(cases[i][j] != null && cases[i][j].estMur){
                     cases[i][j].render(graphics);
                 }
             }
         }
+     /*   int cont=0;
+        for( int i = 0; i < width ; i++){
+            for(int j =0; j<height;j++){
+                if(cases[i][j] != null){
+                    System.out.println(cont+++" : "+cases[i][j]);
+
+                }
+            }
+        }*/
+
 
 
         tresor.render(graphics,new Color(255,215,0));

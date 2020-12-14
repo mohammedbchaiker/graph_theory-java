@@ -67,7 +67,7 @@ public class Espion extends Rectangle {
 
         for (Case[] aCase : cases) {
             for (int j = 0; j < cases[0].length; j++) {
-                if (aCase[j] != null) {
+                if (aCase[j] != null && aCase[j].estMur) {
                     if (caseAdjacente.intersects(aCase[j])) {
                         return false;
                     }
