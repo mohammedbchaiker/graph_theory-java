@@ -2,11 +2,11 @@ package com.company;
 
 import java.awt.*;
 
-public class Fantome extends Rectangle {
+public class Enemie extends Rectangle {
 
 
 
-    Fantome(int fant_x, int fant_y){
+    Enemie(int fant_x, int fant_y){
         setBounds(fant_x,fant_y,16,16);
     }
 

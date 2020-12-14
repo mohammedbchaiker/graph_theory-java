@@ -7,16 +7,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // write your code here
 
-        GestionEvenement gestionEvenement;
-        gestionEvenement = new GestionEvenement();
+        Fenetre fenetre;
+        fenetre = new Fenetre();
         JFrame jFrame = new JFrame();
-        jFrame.setTitle(GestionEvenement.TITRE);
-        jFrame.add(gestionEvenement);
+        jFrame.setTitle(Fenetre.TITRE);
+        jFrame.add(fenetre);
         jFrame.setResizable(false);
         jFrame.pack();
         jFrame.setDefaultCloseOperation(jFrame.EXIT_ON_CLOSE);
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
-        gestionEvenement.start();
+        fenetre.start();
     }
 }

@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
-public class GestionEvenement extends Canvas implements Runnable, KeyListener {
+public class Fenetre extends Canvas implements Runnable, KeyListener {
 
     /**
 	 * 
@@ -22,17 +22,17 @@ public class GestionEvenement extends Canvas implements Runnable, KeyListener {
     private static final int HEIGHT = 480;
 
     static final String TITRE ="Pac-Man";
-    public static Pacman pacman;
-    static Conteneur conteneur;
+    public static Espion espion;
+    static Map map;
 
-    public GestionEvenement() throws IOException {
-        Dimension dimension = new Dimension(GestionEvenement.WIDTH,GestionEvenement.HEIGHT);
+    public Fenetre() throws IOException {
+        Dimension dimension = new Dimension(Fenetre.WIDTH, Fenetre.HEIGHT);
         setPreferredSize(dimension);
         setMaximumSize(dimension);
         setMinimumSize(dimension);
         addKeyListener(this);
-        pacman = new Pacman(GestionEvenement.WIDTH/2,GestionEvenement.HEIGHT/2);
-        conteneur = new Conteneur("/res/plan/plan.png");
+        espion = new Espion(Fenetre.WIDTH/2, Fenetre.HEIGHT/2);
+        map = new Map("/res/plan/plan.png");
     }
 
     public synchronized void start(){
@@ -55,7 +55,7 @@ public class GestionEvenement extends Canvas implements Runnable, KeyListener {
 
 
     private void tick() throws InterruptedException {
-        pacman.tick();
+        espion.tick();
 
     }
 
@@ -68,9 +68,10 @@ public class GestionEvenement extends Canvas implements Runnable, KeyListener {
 
         Graphics graphics = bs.getDrawGraphics();
         graphics.setColor(Color.blue);
-        graphics.fillRect(0,0,GestionEvenement.WIDTH,GestionEvenement.HEIGHT);
+        graphics.fillRect(0,0, Fenetre.WIDTH, Fenetre.HEIGHT);
 
-        conteneur.render(graphics);pacman.render(graphics);
+        map.render(graphics);
+        espion.render(graphics);
         graphics.dispose();
         bs.show();
 
@@ -114,20 +115,20 @@ public class GestionEvenement extends Canvas implements Runnable, KeyListener {
 
         int key = e.getKeyCode();
         if(key == KeyEvent.VK_DOWN) {
-            pacman.directiron="Bas";
-            System.out.println("Pac-Man direction :" + pacman.directiron);
+            espion.direction ="Bas";
+            System.out.println("Espion direction :" + espion.direction);
         }
         if(key == KeyEvent.VK_UP) {
-            pacman.directiron="Haut";
-            System.out.println("Pac-Man direction :" + pacman.directiron);
+            espion.direction ="Haut";
+            System.out.println("Espion direction :" + espion.direction);
         }
         if(key == KeyEvent.VK_LEFT){
-            pacman.directiron="Gauche";
-            System.out.println("Pac-Man direction :" + pacman.directiron);
+            espion.direction ="Gauche";
+            System.out.println("Espion direction :" + espion.direction);
             }
         if(key == KeyEvent.VK_RIGHT){
-            pacman.directiron="Droite";
-            System.out.println("Pac-Man direction :" + pacman.directiron);
+            espion.direction ="Droite";
+            System.out.println("Espion direction :" + espion.direction);
         }
     }
 
@@ -135,7 +136,7 @@ public class GestionEvenement extends Canvas implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if((key == KeyEvent.VK_DOWN) || (key == KeyEvent.VK_UP) || (key == KeyEvent.VK_LEFT) || (key == KeyEvent.VK_RIGHT)){
-            pacman.directiron=null;
+            espion.direction =null;
         }
 
     }
