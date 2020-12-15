@@ -6,13 +6,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Espion extends Rectangle {
 
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
     int pac_x,pac_y;
     String direction;
-    private Color pac_color = Color.darkGray;
+    private final Color pac_color = Color.darkGray;
 
     public Espion(int pac_x, int pac_y){
         this.pac_x=pac_x;

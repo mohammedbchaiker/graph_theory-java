@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
+//import static sun.jvm.hotspot.runtime.BasicObjectLock.size;
 
 public class Map {
 
@@ -13,6 +17,7 @@ public class Map {
     ArrayList<Enemie> enemies;
     Case[][] cases;
     Tresor tresor;
+    ArrayList<Case> chemin;
 
 
 
@@ -21,6 +26,7 @@ public class Map {
            this.height = bufferedImage.getHeight();
            this.width = bufferedImage.getWidth();
            enemies = new ArrayList<>();
+           chemin = new ArrayList<>();
            cases = new Case[width][height];
            tresor = new Tresor(0,0);
            int[] pixels = new int[width*height];
@@ -29,7 +35,7 @@ public class Map {
            for(int i =0;i<width;i++){
                for(int j=0;j<height;j++){
                    int pixel_color = pixels[i+j*width];
-                      if(pixel_color==0xFFFF0000){
+                       if(pixel_color==0xFFFF0000){
                            Fenetre.espion.pac_x=i*16;
                            Fenetre.espion.pac_y=j*16;
                        }
@@ -51,7 +57,7 @@ public class Map {
                       else if(pixel_color == 0xFFFFFFFF) {
 
                           cases[i][j] = new Case(i*16,j*16,false);
-                          System.out.println(cont+++" : "+cases[i][j]);
+                        //  System.out.println(cont+++" : "+cases[i][j]);
                       }
                    }
            }
@@ -59,7 +65,31 @@ public class Map {
 
     }
 
+
+
+
+
+
+
+
+
+
+
     public void render(Graphics graphics){
+        /*
+        System.out.println(height+"  "+width);
+        for( int row = 0; row < height ; row++){
+            System.out.println("");
+            for(int col =0; col<width;col++){
+                if(cases[col][row] != null && cases[col][row].estMur){
+                    System.out.print(" (|) ");
+                }
+                if(cases[col][row] != null && !cases[col][row].estMur){
+                    System.out.print(" () ");
+                }
+            }
+        }*/
+
         for( int i = 0; i < width ; i++){
             for(int j =0; j<height;j++){
                 if(cases[i][j] != null && cases[i][j].estMur){
@@ -82,12 +112,14 @@ public class Map {
         tresor.render(graphics,new Color(255,215,0));
 
 
-       for (int i=0;i<enemies.size();i++){
-           enemies.get(i).render(graphics, new Color(255,0,58));
-       }
+        for (Enemie enemy : enemies) {
+            enemy.render(graphics, new Color(255, 0, 58));
+        }
 
 
 
     }
+
+
 
 }
