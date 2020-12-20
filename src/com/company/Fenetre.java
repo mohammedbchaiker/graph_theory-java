@@ -22,8 +22,8 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
     private static final int HEIGHT = 480;
 
     static final String TITRE ="Pac-Man";
-    public static Espion espion;
-    public static Tresor tresor;
+    public static Souris souris;
+    public static Fromage fromage;
     static Map map;
 
     public Fenetre() throws IOException {
@@ -32,7 +32,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
         setMaximumSize(dimension);
         setMinimumSize(dimension);
         addKeyListener(this);
-        espion = new Espion(Fenetre.WIDTH/2, Fenetre.HEIGHT/2);
+        souris = new Souris(Fenetre.WIDTH/2, Fenetre.HEIGHT/2);
         map = new Map("/res/plan/plan.png");
     }
 
@@ -56,7 +56,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 
 
     private void tick() throws InterruptedException {
-        espion.tick();
+        souris.tick();
 
     }
 
@@ -68,11 +68,10 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
         }
 
         Graphics graphics = bs.getDrawGraphics();
-        graphics.setColor(Color.blue);
+        graphics.setColor(new Color(128,128,128));
         graphics.fillRect(0,0, Fenetre.WIDTH, Fenetre.HEIGHT);
-
         map.render(graphics);
-        espion.render(graphics);
+        souris.render(graphics);
         graphics.dispose();
         bs.show();
 
@@ -116,20 +115,20 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 
         int key = e.getKeyCode();
         if(key == KeyEvent.VK_DOWN) {
-            espion.direction ="Bas";
-            System.out.println("Espion direction :" + espion.direction);
+            souris.direction ="Bas";
+            System.out.println("Souris direction :" + souris.direction);
         }
         if(key == KeyEvent.VK_UP) {
-            espion.direction ="Haut";
-            System.out.println("Espion direction :" + espion.direction);
+            souris.direction ="Haut";
+            System.out.println("Souris direction :" + souris.direction);
         }
         if(key == KeyEvent.VK_LEFT){
-            espion.direction ="Gauche";
-            System.out.println("Espion direction :" + espion.direction);
+            souris.direction ="Gauche";
+            System.out.println("Souris direction :" + souris.direction);
             }
         if(key == KeyEvent.VK_RIGHT){
-            espion.direction ="Droite";
-            System.out.println("Espion direction :" + espion.direction);
+            souris.direction ="Droite";
+            System.out.println("Souris direction :" + souris.direction);
         }
     }
 
@@ -137,7 +136,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if((key == KeyEvent.VK_DOWN) || (key == KeyEvent.VK_UP) || (key == KeyEvent.VK_LEFT) || (key == KeyEvent.VK_RIGHT)){
-            espion.direction =null;
+            souris.direction =null;
         }
 
     }

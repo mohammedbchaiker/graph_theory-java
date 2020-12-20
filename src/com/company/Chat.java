@@ -2,12 +2,12 @@ package com.company;
 
 import java.awt.*;
 
-public class Enemie extends Rectangle {
+public class Chat extends Rectangle {
 
 
 
-    Enemie(int enemie_x, int enemie_y){
-        setBounds(enemie_x,enemie_y,16,16);
+    Chat(int chat_x, int chat_y){
+        setBounds(chat_x,chat_y,16,16);
     }
 
     public void render(Graphics graphics, Color color){

@@ -2,9 +2,9 @@ package com.company;
 
 import java.awt.*;
 
-public class Tresor extends Rectangle {
+public class Fromage extends Rectangle {
 
-    public Tresor(int t_x, int t_y){
+    public Fromage(int t_x, int t_y){
         setBounds(t_x,t_y,16,16);
     }
 
