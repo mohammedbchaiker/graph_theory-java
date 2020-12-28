@@ -68,53 +68,13 @@ public class Map {
 
     }
 
-    public void exec(){
-
-        Case c = new Case(16,256,false);
-        Case c2 = new Case(320,19*16, false);
-
-        CalculateurDeChemin m = new CalculateurDeChemin(rotate(carte), 1,1,8,3);
-        m.bfs();
-        System.out.println(Arrays.deepToString(rotate(carte)));
-     //   System.out.println(m.chemin.size());
-        direction.clear();
-
-        for(int i=1;i<m.chemin.size()-1;i++){
-            if (m.chemin.get(i).getX()>m.chemin.get(i+1).getX()){
-                direction.add("HAUT");
-            }
-            if (m.chemin.get(i).getX()<m.chemin.get(i+1).getX()){
-                direction.add("BAS");
-            }
-            if (m.chemin.get(i).getY()>m.chemin.get(i+1).getY()){
-                direction.add("GAUCHE");
-            }
-            if (m.chemin.get(i).getY()<m.chemin.get(i+1).getY()){
-                direction.add("DROITE");
-            }
-
-
-        }
-    }
-    int [][] rotate(int [][] input){
-
-        int n =input.length;
-        int m = input[0].length;
-        int [][] output = new int [m][n];
-
-        for (int i=0; i<n; i++)
-            for (int j=0;j<m; j++)
-                output [j][n-1-i] = input[i][j];
-        return output;
-    }
-    public void tick() throws InterruptedException {
+    public void tick()  {
         for(Chat chat :chats){
             chat.tick();
         }
     }
 
     public void render(Graphics graphics){
-     //   System.out.println(Arrays.deepToString(rotate(carte)));
             for( int i = 0; i < width ; i++){
                 for(int j =0; j<height;j++){
                     if(cases[i][j] != null && cases[i][j].estMur){
@@ -123,10 +83,14 @@ public class Map {
                 }
             }
             fromage.render(graphics,new Color(255,215,0));
-            for (Chat chat : chats) {
-                chat.render(graphics, Color.blue);
-            }
-        }
+            chats.get(0).render(graphics,Color.green);
+            chats.get(1).render(graphics,Color.pink);
+            chats.get(2).render(graphics,Color.orange);
+            chats.get(3).render(graphics,Color.red);
+
+
+
+    }
 };
 
 

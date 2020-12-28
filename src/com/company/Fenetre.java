@@ -16,7 +16,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 
     private Thread thread;
-    private Thread thread_map;
+    private boolean game_start=false;
 
     private boolean isRunning = false;
 
@@ -60,10 +60,11 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 
     private void tick() throws InterruptedException {
         souris.tick();
-        map.tick();
-       // map.chats.get(0).tick();
-     //  map.exec();
-       // System.out.println(Arrays.deepToString(map.carte));
+        if (game_start){
+            map.tick();
+
+        }
+
     }
 
     private void render(){
@@ -143,6 +144,7 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
         int key = e.getKeyCode();
         if((key == KeyEvent.VK_DOWN) || (key == KeyEvent.VK_UP) || (key == KeyEvent.VK_LEFT) || (key == KeyEvent.VK_RIGHT)){
             souris.direction =null;
+            game_start=true;
         }
 
     }

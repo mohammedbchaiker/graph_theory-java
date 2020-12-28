@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
-public class Chat extends Rectangle {
+public class Chat extends Rectangle implements Runnable {
 
     int chat_x,chat_y;
     Map map;
@@ -74,16 +74,16 @@ public class Chat extends Rectangle {
 
         for(int i=1;i<m.chemin.size()-1;i++){
             if (m.chemin.get(i).getX()>m.chemin.get(i+1).getX()){
-                direction.add("HAUT");
-            }
-            if (m.chemin.get(i).getX()<m.chemin.get(i+1).getX()){
-                direction.add("BAS");
-            }
-            if (m.chemin.get(i).getY()>m.chemin.get(i+1).getY()){
                 direction.add("GAUCHE");
             }
-            if (m.chemin.get(i).getY()<m.chemin.get(i+1).getY()){
+            if (m.chemin.get(i).getX()<m.chemin.get(i+1).getX()){
                 direction.add("DROITE");
+            }
+            if (m.chemin.get(i).getY()>m.chemin.get(i+1).getY()){
+                direction.add("HAUT");
+            }
+            if (m.chemin.get(i).getY()<m.chemin.get(i+1).getY()){
+                direction.add("BAS");
             }
 
         }
@@ -95,36 +95,46 @@ public class Chat extends Rectangle {
 
 
 
-    public void deplacer(String direction) throws InterruptedException {
-
-        int timeout = 100;
+    public void deplacer(String direction){
         int pas = 16;
-        if(Objects.equals(direction, "HAUT")){
-            chat_y = chat_y - pas;
-            TimeUnit.MILLISECONDS.sleep(timeout);
+        if(Objects.equals(direction, "HAUT")&& ProchaineCaseDispo(this.chat_x, this.chat_y - pas)){
+            this.chat_y = this.chat_y - pas;
         }
 
-        if(Objects.equals(direction, "BAS")){
-            chat_y = chat_y + pas;
-            TimeUnit.MILLISECONDS.sleep(timeout);
+        if(Objects.equals(direction, "BAS")&& ProchaineCaseDispo(this.chat_x, this.chat_y + pas)){
+            this.chat_y = this.chat_y + pas;
         }
 
-        if(Objects.equals(direction, "GAUCHE")){
-            chat_x = chat_x - pas;
-            TimeUnit.MILLISECONDS.sleep(timeout);
+        if(Objects.equals(direction, "GAUCHE")&& ProchaineCaseDispo(this.chat_x - pas, this.chat_y)){
+            this.chat_x = this.chat_x - pas;
         }
 
-        if(Objects.equals(direction, "DROITE")){
-            chat_x = chat_x + pas;
-            TimeUnit.MILLISECONDS.sleep(timeout);
+        if(Objects.equals(direction, "DROITE")&& ProchaineCaseDispo(this.chat_x + pas, this.chat_y)){
+            this.chat_x = this.chat_x + pas;
         }
 
 
 
     }
+    private boolean ProchaineCaseDispo(int x,int y){
+
+        Rectangle caseAdjacente = new Rectangle(x,y,16,16);
+        Case[][] cases = Fenetre.map.cases;
+
+        for (Case[] aCase : cases) {
+            for (int j = 0; j < cases[0].length; j++) {
+                if (aCase[j] != null && aCase[j].estMur) {
+                    if (caseAdjacente.intersects(aCase[j])) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
 
-    public void tick() throws InterruptedException {
+    public void tick() {
         exec();
         if (!direction.isEmpty()){
             for (String s : direction) {
@@ -138,7 +148,11 @@ public class Chat extends Rectangle {
 
     public void render(Graphics graphics, Color color){
         graphics.setColor(color);
-        graphics.fillRect(x,y,16,16);
+        graphics.fillRect(this.chat_x,this.chat_y,16,16);
     }
 
+    @Override
+    public void run() {
+        tick();
+    }
 }
