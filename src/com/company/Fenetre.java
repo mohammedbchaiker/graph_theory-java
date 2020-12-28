@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Fenetre extends Canvas implements Runnable, KeyListener {
 
@@ -15,7 +16,9 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 
     private Thread thread;
-	private boolean isRunning = false;
+    private Thread thread_map;
+
+    private boolean isRunning = false;
 
 
     private static final int WIDTH = 640;
@@ -57,7 +60,10 @@ public class Fenetre extends Canvas implements Runnable, KeyListener {
 
     private void tick() throws InterruptedException {
         souris.tick();
-
+        map.tick();
+       // map.chats.get(0).tick();
+     //  map.exec();
+       // System.out.println(Arrays.deepToString(map.carte));
     }
 
     private void render(){

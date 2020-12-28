@@ -1,37 +1,43 @@
 package com.company;
 
+import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
 
 public class CalculateurDeChemin {
-    private static class Node{
+    public static class Node{
         int x;
         int y;
         public Node(int x, int y) {
             this.x = x;
             this.y = y;
         }
+
+        public int getX() {
+            return x;
+        }
+        public int getY(){
+            return y;
+        }
     }
+
     public ArrayList<Node> chemin=new ArrayList<>();
     public int[][] map;
-    //starting point
     private final int Debut_X;
     private final int Debut_Y;
-    //end
     private final int Dest_X;
     private final int Dest_Y;
-    //Represents four possible directions
     private final int[] Direction_X = {1,0,-1,0};
     private final int[] Direction_Y = {0,1,0,-1};
 
     public CalculateurDeChemin(int[][] map, int Debut_X, int Debut_Y, int Dest_X, int Dest_Y) {
         this.map = map;
-        this.Debut_X = Debut_X;
-        this.Debut_Y = Debut_Y;
-        this.Dest_X = Dest_X;
-        this.Dest_Y = Dest_Y;
+        this.Debut_X = Debut_X/16;
+        this.Debut_Y = Debut_Y/16;
+        this.Dest_X = Dest_X/16;
+        this.Dest_Y = Dest_Y/16;
     }
     public void print(int[][] map) {
         for (int[] ints : map) {
@@ -54,7 +60,7 @@ public class CalculateurDeChemin {
             }
         }
         //Enter the starting point, set the distance of the starting point to 0 and mark it as visited
-        nodes.add(new Node(this.Debut_X, this.Debut_Y));
+        var add = nodes.add(new Node(this.Debut_X, this.Debut_Y));
         dis[this.Debut_X][this.Debut_Y] = 0;
         map[this.Debut_X][this.Debut_Y] = 2;
         Node temp;
@@ -78,8 +84,7 @@ public class CalculateurDeChemin {
 
         int a = this.Dest_X;
         int b = this.Dest_Y;
-        System.out.printf("The shortest distance from (%d,%d) to (%d,%d) is: %d, the route is:\n",
-                this.Debut_X, this.Debut_Y, a, b, dis[a][b]);
+        System.out.printf("Le chemin le plus court de (%d,%d) à (%d,%d) est : %d,est le chemin suivant :\n", this.Debut_X, this.Debut_Y, a, b, dis[a][b]);
         //Reverse access to the shortest path route and merge into the stack
         Stack<Node> stack = new Stack<>();
         stack.add(new Node(a, b));
@@ -95,6 +100,7 @@ public class CalculateurDeChemin {
             Node p = stack.pop();
             chemin.add(new Node(p.x, p.y));
             System.out.printf("(%d,%d)->",p.x,p.y);
+
         }
     }
 
