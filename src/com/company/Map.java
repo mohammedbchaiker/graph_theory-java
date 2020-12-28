@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Map {
 
@@ -69,9 +72,10 @@ public class Map {
     }
 
     public void tick()  {
-        for(Chat chat :chats){
-            chat.tick();
-        }
+        chats.get(0).tick();
+        chats.get(1).tick();
+        chats.get(2).tick();
+        chats.get(3).tick();
     }
 
     public void render(Graphics graphics){

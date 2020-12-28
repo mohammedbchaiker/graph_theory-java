@@ -3,14 +3,12 @@ package com.company;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 
+public class Chat extends Rectangle  {
 
-public class Chat extends Rectangle implements Runnable {
 
     int chat_x,chat_y;
-    Map map;
     int [][] carte={{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, -1},
@@ -64,7 +62,12 @@ public class Chat extends Rectangle implements Runnable {
     }
 
 
-
+    public void sleep(int val){
+        try{
+            Thread.sleep(val);
+        }
+        catch (Exception exception){}
+    }
 
     public void exec(){
         CalculateurDeChemin m = new CalculateurDeChemin(rotate(carte), this.chat_x,this.chat_y, Fenetre.souris.souris_x,Fenetre.souris.souris_y);
@@ -75,6 +78,7 @@ public class Chat extends Rectangle implements Runnable {
         for(int i=1;i<m.chemin.size()-1;i++){
             if (m.chemin.get(i).getX()>m.chemin.get(i+1).getX()){
                 direction.add("GAUCHE");
+
             }
             if (m.chemin.get(i).getX()<m.chemin.get(i+1).getX()){
                 direction.add("DROITE");
@@ -97,20 +101,24 @@ public class Chat extends Rectangle implements Runnable {
 
     public void deplacer(String direction){
         int pas = 16;
-        if(Objects.equals(direction, "HAUT")&& ProchaineCaseDispo(this.chat_x, this.chat_y - pas)){
+        if(Objects.equals(direction, "HAUT")&& ProchaineCaseDispo(chat_x, chat_y - pas) ){
             this.chat_y = this.chat_y - pas;
+            sleep(10);
         }
 
-        if(Objects.equals(direction, "BAS")&& ProchaineCaseDispo(this.chat_x, this.chat_y + pas)){
+        if(Objects.equals(direction, "BAS")&& ProchaineCaseDispo(chat_x, chat_y + pas)){
             this.chat_y = this.chat_y + pas;
+            sleep(10);
         }
 
-        if(Objects.equals(direction, "GAUCHE")&& ProchaineCaseDispo(this.chat_x - pas, this.chat_y)){
+        if(Objects.equals(direction, "GAUCHE")&& ProchaineCaseDispo(chat_x - pas, chat_y)){
             this.chat_x = this.chat_x - pas;
+            sleep(10);
         }
 
-        if(Objects.equals(direction, "DROITE")&& ProchaineCaseDispo(this.chat_x + pas, this.chat_y)){
+        if(Objects.equals(direction, "DROITE")&& ProchaineCaseDispo(chat_x + pas, chat_y)){
             this.chat_x = this.chat_x + pas;
+            sleep(10);
         }
 
 
@@ -121,10 +129,10 @@ public class Chat extends Rectangle implements Runnable {
         Rectangle caseAdjacente = new Rectangle(x,y,16,16);
         Case[][] cases = Fenetre.map.cases;
 
-        for (Case[] aCase : cases) {
+        for (int i=0;i<cases.length;i++) {
             for (int j = 0; j < cases[0].length; j++) {
-                if (aCase[j] != null && aCase[j].estMur) {
-                    if (caseAdjacente.intersects(aCase[j])) {
+                if (cases[i][j] != null && cases[i][j].estMur) {
+                    if (caseAdjacente.intersects(cases[i][j])) {
                         return false;
                     }
                 }
@@ -134,7 +142,7 @@ public class Chat extends Rectangle implements Runnable {
     }
 
 
-    public void tick() {
+    public void tick()  {
         exec();
         if (!direction.isEmpty()){
             for (String s : direction) {
@@ -151,8 +159,5 @@ public class Chat extends Rectangle implements Runnable {
         graphics.fillRect(this.chat_x,this.chat_y,16,16);
     }
 
-    @Override
-    public void run() {
-        tick();
-    }
+
 }

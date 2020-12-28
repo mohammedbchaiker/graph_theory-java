@@ -2,12 +2,23 @@ package com.company;
 
 import java.awt.*;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Souris extends Rectangle {
 
 
-	private static final long serialVersionUID = 1L;
+
+
+
+
+
+
+
+
+
+    private static final long serialVersionUID = 1L;
     int souris_x, souris_y;
     String direction;
     private final Color souris_color = Color.darkGray;
