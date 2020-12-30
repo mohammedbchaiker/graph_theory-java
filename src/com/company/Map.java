@@ -63,7 +63,6 @@ public class Map {
 
                           cases[i][j] = new Case(i*16,j*16,false);
                            carte[i][j] = 0;
-                        //  System.out.println(cont+++" : "+cases[i][j]);
                       }
                    }
            }
@@ -71,11 +70,27 @@ public class Map {
 
     }
 
+
+
+
+
     public void tick()  {
-        chats.get(0).tick();
-        chats.get(1).tick();
-        chats.get(2).tick();
-        chats.get(3).tick();
+        if (!(chats.get(1).chat_x==chats.get(0).chat_x && chats.get(1).chat_y==chats.get(0).chat_y) ||!(chats.get(2).chat_x==chats.get(0).chat_x && chats.get(2).chat_y==chats.get(0).chat_y) ||!(chats.get(3).chat_x==chats.get(0).chat_x && chats.get(3).chat_y==chats.get(0).chat_y)){
+            chats.get(0).tick();
+        }
+        if (!(chats.get(0).chat_x==chats.get(1).chat_x && chats.get(0).chat_y==chats.get(1).chat_y) ||!(chats.get(2).chat_x==chats.get(1).chat_x && chats.get(2).chat_y==chats.get(1).chat_y) ||!(chats.get(3).chat_x==chats.get(1).chat_x && chats.get(3).chat_y==chats.get(1).chat_y)){
+            chats.get(1).tick();
+        }
+        if (!(chats.get(0).chat_x==chats.get(2).chat_x && chats.get(0).chat_y==chats.get(2).chat_y) ||!(chats.get(1).chat_x==chats.get(2).chat_x && chats.get(1).chat_y==chats.get(2).chat_y) ||!(chats.get(3).chat_x==chats.get(2).chat_x && chats.get(3).chat_y==chats.get(2).chat_y)){
+            chats.get(2).tick();
+        }
+        if (!(chats.get(0).chat_x==chats.get(3).chat_x && chats.get(0).chat_y==chats.get(3).chat_y) ||!(chats.get(1).chat_x==chats.get(3).chat_x && chats.get(1).chat_y==chats.get(3).chat_y) ||!(chats.get(2).chat_x==chats.get(3).chat_x && chats.get(2).chat_y==chats.get(3).chat_y)){
+            chats.get(3).tick();
+        }
+
+
+
+
     }
 
     public void render(Graphics graphics){

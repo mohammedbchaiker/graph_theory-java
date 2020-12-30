@@ -101,26 +101,21 @@ public class Chat extends Rectangle  {
 
     public void deplacer(String direction){
         int pas = 16;
-        if(Objects.equals(direction, "HAUT")&& ProchaineCaseDispo(chat_x, chat_y - pas) ){
+        if(Objects.equals(direction, "HAUT")&& ProchaineCaseDispo(this.chat_x, this.chat_y - pas) ){
             this.chat_y = this.chat_y - pas;
-            sleep(10);
         }
 
-        if(Objects.equals(direction, "BAS")&& ProchaineCaseDispo(chat_x, chat_y + pas)){
+        if(Objects.equals(direction, "BAS")&& ProchaineCaseDispo(this.chat_x, this.chat_y + pas)){
             this.chat_y = this.chat_y + pas;
-            sleep(10);
         }
 
-        if(Objects.equals(direction, "GAUCHE")&& ProchaineCaseDispo(chat_x - pas, chat_y)){
+        if(Objects.equals(direction, "GAUCHE")&& ProchaineCaseDispo(this.chat_x - pas, this.chat_y)){
             this.chat_x = this.chat_x - pas;
-            sleep(10);
         }
 
-        if(Objects.equals(direction, "DROITE")&& ProchaineCaseDispo(chat_x + pas, chat_y)){
+        if(Objects.equals(direction, "DROITE")&& ProchaineCaseDispo(this.chat_x + pas, this.chat_y)){
             this.chat_x = this.chat_x + pas;
-            sleep(10);
         }
-
 
 
     }
