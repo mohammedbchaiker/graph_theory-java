@@ -6,6 +6,7 @@ public class Case extends Rectangle {
     int x;
     int y;
     public boolean estMur;
+    public boolean estDispo=true;
     public Case(int case_x,int case_y, boolean estMur){
         x=case_x;
         y=case_y;

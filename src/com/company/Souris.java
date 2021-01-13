@@ -55,10 +55,11 @@ public class Souris extends Rectangle {
 
         Rectangle p = new Rectangle(souris_x, souris_y,16,16);
 
-
-        for(int i = 0; i < map.chats.size() ; i++){
-
-            if (p.intersects(map.chats.get(i))){
+        if (p.intersects(map.fromage)){
+            System.out.println("Le souris a gagné");
+        }
+        for(int i = 0; i < Map.chats.size() ; i++){
+            if (p.intersects(Map.chats.get(i))){
                 System.out.println("L'souris est attrapé");
             }
             }
@@ -74,12 +75,19 @@ public class Souris extends Rectangle {
         Rectangle caseAdjacente = new Rectangle(x,y,16,16);
         Case[][] cases = Fenetre.map.cases;
 
-        for (Case[] aCase : cases) {
+        for (int i=0;i<cases.length;i++) {
             for (int j = 0; j < cases[0].length; j++) {
-                if (aCase[j] != null && aCase[j].estMur) {
-                    if (caseAdjacente.intersects(aCase[j])) {
+                if (cases[i][j] != null && cases[i][j].estMur) {
+                    if (this.souris_x==cases[i][j].x && this.souris_y==cases[i][j].y){
+                        cases[i][j].estDispo=false;
+                    }
+                    else {
+                        cases[i][j].estDispo=true;
+                    }
+                    if (caseAdjacente.intersects(cases[i][j])) {
                         return false;
                     }
+
                 }
             }
         }

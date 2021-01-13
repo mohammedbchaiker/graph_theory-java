@@ -5,16 +5,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
 
 public class Map {
 
     public int width;
     public int height;
-    ArrayList<Chat> chats;
+    public static ArrayList<Chat> chats;
     Case[][] cases;
     Fromage fromage;
     int[][] carte;
@@ -36,7 +33,6 @@ public class Map {
            fromage = new Fromage(0,0);
            int[] pixels = new int[width*height];
            bufferedImage.getRGB(0,0, width, height, pixels, 0, width);
-        int cont =0;
            for(int i =0;i<width;i++){
                for(int j=0;j<height;j++){
                    int pixel_color = pixels[i+j*width];
@@ -73,25 +69,24 @@ public class Map {
 
 
 
-
-    public void tick()  {
-        if (!(chats.get(1).chat_x==chats.get(0).chat_x && chats.get(1).chat_y==chats.get(0).chat_y) ||!(chats.get(2).chat_x==chats.get(0).chat_x && chats.get(2).chat_y==chats.get(0).chat_y) ||!(chats.get(3).chat_x==chats.get(0).chat_x && chats.get(3).chat_y==chats.get(0).chat_y)){
+    public void tick() throws InterruptedException {
             chats.get(0).tick();
-        }
-        if (!(chats.get(0).chat_x==chats.get(1).chat_x && chats.get(0).chat_y==chats.get(1).chat_y) ||!(chats.get(2).chat_x==chats.get(1).chat_x && chats.get(2).chat_y==chats.get(1).chat_y) ||!(chats.get(3).chat_x==chats.get(1).chat_x && chats.get(3).chat_y==chats.get(1).chat_y)){
-            chats.get(1).tick();
-        }
-        if (!(chats.get(0).chat_x==chats.get(2).chat_x && chats.get(0).chat_y==chats.get(2).chat_y) ||!(chats.get(1).chat_x==chats.get(2).chat_x && chats.get(1).chat_y==chats.get(2).chat_y) ||!(chats.get(3).chat_x==chats.get(2).chat_x && chats.get(3).chat_y==chats.get(2).chat_y)){
-            chats.get(2).tick();
-        }
-        if (!(chats.get(0).chat_x==chats.get(3).chat_x && chats.get(0).chat_y==chats.get(3).chat_y) ||!(chats.get(1).chat_x==chats.get(3).chat_x && chats.get(1).chat_y==chats.get(3).chat_y) ||!(chats.get(2).chat_x==chats.get(3).chat_x && chats.get(2).chat_y==chats.get(3).chat_y)){
-            chats.get(3).tick();
-        }
 
+
+            chats.get(1).tick();
+
+
+            chats.get(2).tick();
+
+
+
+            chats.get(3).tick();
 
 
 
     }
+
+
 
     public void render(Graphics graphics){
             for( int i = 0; i < width ; i++){
@@ -110,6 +105,14 @@ public class Map {
 
 
     }
+
+
+
+
+
+
+
+
 };
 
 
